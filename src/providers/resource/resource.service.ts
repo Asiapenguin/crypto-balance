@@ -1,11 +1,6 @@
 import { Injector, Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Resource } from "../../models/resource";
-import { Currency } from "../../models/currency";
-
-export interface ListResponse<T> {
-  data?: Array<T>;
-}
 
 export class ResourceService {
   url: string;
@@ -19,12 +14,11 @@ export class ResourceService {
   list<T extends Resource>(
     params?: HttpParams,
     headers?: HttpHeaders
-  ): Promise<ListResponse<T>> {
+  ): Promise<Array<T>> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.url, { params }).subscribe(
-        (cryptoArray: ListResponse<T>) => {
-          this.generateListResponse(cryptoArray);
-          resolve();
+      this.http.get(this.url + "/", { params }).subscribe(
+        (cryptoArray: Array<T>) => {
+          resolve(this.generateListResponse(cryptoArray));
         },
         err => {
           reject(err);
@@ -43,7 +37,7 @@ export class ResourceService {
     headers?: HttpHeaders
   ): Promise<T> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.url + "/" + id, { params }).subscribe(
+      this.http.get(this.url + "/" + id + "/", { params }).subscribe(
         (data: T) => {
           const item = new this.modelClass();
           Object.assign(item, data);
@@ -60,8 +54,16 @@ export class ResourceService {
     return new GetQuery<T>(this.get.bind(this)).id(id);
   }
 
-  private generateListResponse(result) {
+  private generateListResponse<T extends Resource>(result): Array<T> {
     console.log("result", result);
+    const items: Array<T> = [];
+    for (const row of result) {
+      const item = new this.modelClass();
+      Object.assign(item, row);
+      items.push(item);
+    }
+    result = items;
+    return result;
   }
 }
 
@@ -139,7 +141,7 @@ class GetQuery<T extends Resource> {
     }
 
     if (this.currency) {
-      params = params.set("convert", this.currency.currency);
+      params = params.set("convert", this.currency);
     }
 
     return params;

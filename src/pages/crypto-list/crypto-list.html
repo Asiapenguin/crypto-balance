@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Top 10 Cryptocurrency Charts</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div *ngIf='cryptocurrencies'>
+    <table class='table table-sm'>
+      <tbody>
+        <tr *ngFor='let crypto of cryptocurrencies'>
+          <td>{{crypto.name}}</td>
+          <td>{{crypto.price_cad}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>
