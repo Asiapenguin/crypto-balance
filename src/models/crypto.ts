@@ -7,14 +7,11 @@ export class Crypto extends Resource {
   name: string;
   symbol: string;
   rank: string;
-  price_usd: string;
+  price_cad: string;
   price_btc: string;
-  twentyFour_volume_usd: string;
-  market_cap_usd: string;
-  available_supply: string;
+  market_cap_cad: string;
   total_supply: string;
-  percent_change_hourly: string;
-  percent_change_daily: string;
-  percent_change_weekly: string;
+  percent_change_1h: string;
+  percent_change_24h: string;
   last_updated: Date;
 }

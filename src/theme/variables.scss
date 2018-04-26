@@ -34,8 +34,8 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #021c1e,
+  secondary:  #40e0d0,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222
@@ -86,3 +86,13 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+@font-face {
+  font-family: Gotham Rounded Light;
+  src: url('../../assets/fonts/GothamRounded-Light.otf')
+}
+
+@font-face {
+  font-family: Gotham Rounded Medium;
+  src: url('../../assets/fonts/GothamRounded-Medium.otf')
+}

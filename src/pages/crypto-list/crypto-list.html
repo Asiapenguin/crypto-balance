@@ -1,17 +1,23 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Top 10 Cryptocurrency Charts</ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding>
-  <div *ngIf='cryptocurrencies'>
-    <table class='table table-sm'>
-      <tbody>
-        <tr *ngFor='let crypto of cryptocurrencies'>
-          <td>{{crypto.name}}</td>
-          <td>{{crypto.price_cad}}</td>
-        </tr>
-      </tbody>
-    </table>
+<page-header [name]='"TOP 10"' (refreshEvent)='refresh()'></page-header>
+<ion-content>
+  <div *ngIf='cryptocurrencies' padding>
+    <div *ngFor='let cryptocurrency of cryptocurrencies'>
+      <ion-card>
+        <ion-row>
+          <ion-col col-sm-6>
+            <ion-list>
+              <div ion-item class='header'>{{cryptocurrency.name}}</div>
+              <div ion-item>{{cryptocurrency.symbol}}</div>
+            </ion-list>
+          </ion-col>
+          <ion-col col-sm-6>
+            <ion-list>
+              <div ion-item>{{cryptocurrency.price_cad | number}}</div>
+              <div ion-item [ngStyle]='{"color": cryptocurrency.percent_change_24h.indexOf("-") > -1 ? "#d14836" : "#093" }'>{{cryptocurrency.percent_change_24h | number}}%</div>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
   </div>
 </ion-content>

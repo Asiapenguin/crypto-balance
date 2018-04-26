@@ -1,9 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { CryptoService } from "../../providers/crypto/crypto.service";
 import { Crypto } from "../../models/crypto";
 
-@IonicPage()
 @Component({
   selector: "page-crypto-list",
   templateUrl: "crypto-list.html"
@@ -22,14 +21,25 @@ export class CryptoListPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getCryptocurrencies();
+  }
+
+  getCryptocurrencies() {
     this.cryptoService
       .findAll()
       .convert("CAD")
       .limit(10)
       .get()
-      .then((result) => {
+      .then((result: Array<Crypto>) => {
         this.cryptocurrencies = result;
-        console.log(this.cryptocurrencies)
+        console.log(this.cryptocurrencies);
       });
+  }
+
+  refresh() {
+    this.getCryptocurrencies();
+    setTimeout(() => {
+      
+    }, 10000);
   }
 }

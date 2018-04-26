@@ -17,8 +17,8 @@ export class ResourceService {
   ): Promise<Array<T>> {
     return new Promise((resolve, reject) => {
       this.http.get(this.url + "/", { params }).subscribe(
-        (cryptoArray: Array<T>) => {
-          resolve(this.generateListResponse(cryptoArray));
+        (result: Array<T>) => {
+          resolve(this.generateCryptoArray(result));
         },
         err => {
           reject(err);
@@ -54,10 +54,10 @@ export class ResourceService {
     return new GetQuery<T>(this.get.bind(this)).id(id);
   }
 
-  private generateListResponse<T extends Resource>(result): Array<T> {
-    console.log("result", result);
+  private generateCryptoArray<T extends Resource>(result): Array<T> {
     const items: Array<T> = [];
     for (const row of result) {
+      console.log(row);
       const item = new this.modelClass();
       Object.assign(item, row);
       items.push(item);
@@ -160,7 +160,7 @@ class GetQuery<T extends Resource> {
     return null;
   }
 
-  get(): Promise<T | ListResponse<T>> {
+  get(): Promise<T | Array<T>> {
     const params = this.getHttpParams();
     if (this.resourceId) {
       return this.getHandler(this.resourceId, params);
