@@ -8,7 +8,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AboutPage } from '../pages/about/about';
 import { CryptoListPage } from '../pages/crypto-list/crypto-list';
 import { HeaderPage } from '../pages/header/header';
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CryptoService } from '../providers/crypto/crypto.service';
 import { MyApp } from './app.component';
@@ -20,7 +19,6 @@ import { CurrencyService } from '../providers/currency/currency.service';
   declarations: [
     MyApp,
     AboutPage,
-    HomePage,
     TabsPage,
     CryptoListPage,
     HeaderPage,
@@ -35,7 +33,6 @@ import { CurrencyService } from '../providers/currency/currency.service';
   entryComponents: [
     MyApp,
     AboutPage,
-    HomePage,
     TabsPage,
     CryptoListPage,
     HeaderPage,

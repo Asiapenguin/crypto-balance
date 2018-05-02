@@ -1,8 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import {
   NavController,
   NavParams,
-  ToastController,
   LoadingController,
   ModalController
 } from "ionic-angular";
