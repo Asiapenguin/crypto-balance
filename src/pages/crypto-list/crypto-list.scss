@@ -1,22 +1,21 @@
 page-crypto-list {
-    
-}
-
-.card {
+  .card {
     border-radius: 10px;
     font-family: "Gotham Rounded Medium";
     background: color($colors, primary);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    .card-header, .item {
-        background: color($colors, primary);
-        color: white;
+    .card-header,
+    .item {
+      background: color($colors, primary);
+      color: white;
     }
     .header {
-        color: color($colors, secondary);
+      color: color($colors, secondary);
     }
-}
+  }
 
-.scroll-content {
-    background: #C6E1F4;
+  .scroll-content {
+    background: #c6e1f4;
     margin-top: 56px;
+  }
 }

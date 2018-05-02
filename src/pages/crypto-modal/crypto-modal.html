@@ -1,0 +1,10 @@
+<ion-header *ngIf='crypto'>
+  <ion-navbar>
+    <ion-title float-left>
+      <ion-icon name='ios-arrow-back' (click)='closeModal()' float-left padding-right></ion-icon>
+      {{crypto.name}} {{crypto.symbol}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  {{crypto.price_cad}}
+</ion-content>

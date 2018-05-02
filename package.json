@@ -29,7 +29,6 @@
     "@ng-bootstrap/ng-bootstrap": "^1.1.2",
     "chart.js": "^2.7.2",
     "cordova": "^8.0.0",
-    "font-awesome": "^4.7.0",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "jquery": "^3.3.1",
@@ -42,16 +41,7 @@
     "@ionic/app-scripts": "3.1.8",
     "@types/jasmine": "^2.8.6",
     "@types/jasminewd2": "~2.0.2",
-    "jasmine": "^3.1.0",
-    "jasmine-core": "^3.1.0",
-    "jasmine-ts": "^0.2.1",
-    "karma": "^2.0.2",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-jasmine": "^1.1.1",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project",
-  "config": {
-    "ionic_copy": "./scripts/copy-font-awesome.js"
-  }
+  "description": "An Ionic project"
 }

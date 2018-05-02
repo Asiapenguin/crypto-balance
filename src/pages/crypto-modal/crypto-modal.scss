@@ -1,0 +1,9 @@
+page-crypto-modal {
+  ion-navbar {
+    font-size: 17px;
+  }
+  .scroll-content {
+    background: color($colors, primary);
+    color: color($colors, secondary);
+  }
+}

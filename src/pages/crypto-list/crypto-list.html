@@ -1,8 +1,8 @@
-<page-header [name]='"TOP 10"' (refreshEvent)='refresh()'></page-header>
+<page-header [name]='"TOP 10"' (refresh)='refresh()'></page-header>
 <ion-content>
   <div *ngIf='cryptocurrencies' padding>
     <div *ngFor='let cryptocurrency of cryptocurrencies'>
-      <ion-card>
+      <ion-card (click)='showCrypto(cryptocurrency)'>
         <ion-row>
           <ion-col col-sm-6>
             <ion-list>
@@ -12,7 +12,8 @@
           </ion-col>
           <ion-col col-sm-6>
             <ion-list>
-              <div ion-item>{{cryptocurrency.price_cad | number}}</div>
+              <div ion-item *ngIf='currency === "CAD"'>{{cryptocurrency.price_cad | number}}</div>
+              <div ion-item *ngIf='currency === "BTC"'>{{cryptocurrency.price_btc | number}}</div>
               <div ion-item [ngStyle]='{"color": cryptocurrency.percent_change_24h.indexOf("-") > -1 ? "#d14836" : "#093" }'>{{cryptocurrency.percent_change_24h | number}}%</div>
             </ion-list>
           </ion-col>

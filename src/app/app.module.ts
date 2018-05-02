@@ -12,6 +12,9 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CryptoService } from '../providers/crypto/crypto.service';
 import { MyApp } from './app.component';
+import { CryptoModalPage } from '../pages/crypto-modal/crypto-modal';
+import { SettingsPage } from '../pages/settings/settings';
+import { CurrencyService } from '../providers/currency/currency.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { MyApp } from './app.component';
     HomePage,
     TabsPage,
     CryptoListPage,
-    HeaderPage
+    HeaderPage,
+    CryptoModalPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -33,13 +38,16 @@ import { MyApp } from './app.component';
     HomePage,
     TabsPage,
     CryptoListPage,
-    HeaderPage
+    HeaderPage,
+    CryptoModalPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CryptoService
+    CryptoService,
+    CurrencyService
   ],
   bootstrap: [IonicApp]
 })

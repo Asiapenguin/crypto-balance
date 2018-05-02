@@ -1,32 +1,21 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the HeaderPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { NavController, NavParams, PopoverController } from "ionic-angular";
 
 @Component({
-  selector: 'page-header',
-  templateUrl: 'header.html',
+  selector: "page-header",
+  templateUrl: "header.html"
 })
 export class HeaderPage {
-
   @Input() name: string;
-  @Output() refreshEvent = new EventEmitter();
+  @Output() refresh = new EventEmitter();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HeaderPage');
-  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public popoverCtrl: PopoverController
+  ) {}
 
   clickRefresh() {
-    this.refreshEvent.emit();
+    this.refresh.emit();
   }
-
 }
