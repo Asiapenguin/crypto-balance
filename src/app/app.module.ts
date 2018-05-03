@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { AboutPage } from '../pages/about/about';
 import { CryptoListPage } from '../pages/crypto-list/crypto-list';
 import { HeaderPage } from '../pages/header/header';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -14,16 +13,17 @@ import { MyApp } from './app.component';
 import { CryptoModalPage } from '../pages/crypto-modal/crypto-modal';
 import { SettingsPage } from '../pages/settings/settings';
 import { CurrencyService } from '../providers/currency/currency.service';
+import { ProfilePage } from '../pages/profile/profile';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     TabsPage,
     CryptoListPage,
     HeaderPage,
     CryptoModalPage,
-    SettingsPage
+    SettingsPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -32,12 +32,12 @@ import { CurrencyService } from '../providers/currency/currency.service';
   ],
   entryComponents: [
     MyApp,
-    AboutPage,
     TabsPage,
     CryptoListPage,
     HeaderPage,
     CryptoModalPage,
-    SettingsPage
+    SettingsPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { DecimalPipe } from "@angular/common";
 import {
   NavController,
   NavParams,
@@ -18,6 +19,7 @@ import { CurrencyService } from "../../providers/currency/currency.service";
 export class CryptoListPage {
   cryptocurrencies: Array<Crypto> = [];
   currency: string;
+  title: string;
 
   constructor(
     public navCtrl: NavController,
@@ -30,11 +32,11 @@ export class CryptoListPage {
 
   ionViewWillEnter() {
     this.getCryptocurrencies();
+    this.title = 'TOP 10 in ' + this.currency;
   }
 
   getCryptocurrencies() {
     this.currency = this.currencyService.currency;
-    console.log('currency', this.currency);
     this.cryptoService
       .findAll()
       .convert(this.currency)

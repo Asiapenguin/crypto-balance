@@ -57,7 +57,6 @@ export class ResourceService {
   private generateCryptoArray<T extends Resource>(result): Array<T> {
     const items: Array<T> = [];
     for (const row of result) {
-      console.log(row);
       const item = new this.modelClass();
       Object.assign(item, row);
       items.push(item);

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-
-import { AboutPage } from '../about/about';
 import { CryptoListPage } from '../crypto-list/crypto-list';
 import { SettingsPage } from '../settings/settings';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -10,7 +9,7 @@ import { SettingsPage } from '../settings/settings';
 export class TabsPage {
 
   cryptoList = CryptoListPage;
-  profile = AboutPage;
+  profile = ProfilePage;
   settings = SettingsPage;
 
   constructor() {
