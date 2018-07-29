@@ -34,5 +34,7 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 
-CryptoBalance.apk
+Crypto.apk
 zipalign
+my-release-key.keystore
+app-release-unsigned.apk

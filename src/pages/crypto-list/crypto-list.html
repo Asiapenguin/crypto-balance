@@ -6,7 +6,7 @@
         <tr>
           <th col-3>Symbol</th>
           <th col-3>Name</th>
-          <th col-3>Price</th>
+          <th col-3>Price ({{currency}})</th>
           <th col-3>Change (24h)</th>
         </tr>
       </thead>
@@ -16,7 +16,8 @@
             <ion-badge color='secondary'>{{cryptocurrency.symbol}}</ion-badge>
           </td>
           <td>{{cryptocurrency.name}}</td>
-          <td>{{getPrice(cryptocurrency) | currency}}</td>
+          <td *ngIf='currency != "BTC"'>{{getPrice(cryptocurrency) | currency}}</td>
+          <td *ngIf='currency == "BTC"'>{{getPrice(cryptocurrency) | number:'1.8-8'}}</td>
           <td [class.negative]='!posChange(cryptocurrency)' [class.positive]='posChange(cryptocurrency)'>
             {{getPercentChange(cryptocurrency) | number}}%
           </td>

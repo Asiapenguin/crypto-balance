@@ -1,31 +1,4 @@
 page-crypto-list {
-  // font-family: 'Gotham Rounded Medium';
-  // background: color($colors, primary);
-  // font-size: 10px;
-
-  // .header {
-  //   color: color($colors, secondary);
-  // }
-
-  // .badge {
-  //   color: color($colors, primary);
-  //   font-size: 8px;
-  // }
-
-  // .price {
-  //   color: white
-  // }
-
-  // .percent-change {
-  //   .positive {
-  //     color: #093;
-  //   }
-
-  //   .negative {
-  //     color: #d14836;
-  //   }
-  // }
-
   .table-container {
     font-family: 'Gotham Rounded Medium';
     padding: 10px 20px 10px 20px;
@@ -36,7 +9,7 @@ page-crypto-list {
     }
 
     thead th {
-      font-size: 8px;
+      font-size: 10px;
       border-top: 0;
       border-bottom: 1px solid #aeaeae;
     }
@@ -56,6 +29,10 @@ page-crypto-list {
       .negative {
         color: #d14836;
       }
+    }
+
+    .badge {
+      font-size: 1.1rem;
     }
   }
   .scroll-content {

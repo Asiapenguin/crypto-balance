@@ -39,10 +39,6 @@ export class CryptoListPage implements OnInit {
       .then(
         (result: ListResponse<Crypto>) => {
           this.cryptocurrencies = result.data;
-          console.log(this.cryptocurrencies);
-        },
-        err => {
-          console.log('error getting cryptocurrencies');
         }
       );
   }
