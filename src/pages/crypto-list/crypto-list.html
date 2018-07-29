@@ -1,24 +1,27 @@
 <page-header [name]='title' (refresh)='refresh()'></page-header>
 <ion-content>
-  <div *ngIf='cryptocurrencies' padding>
-    <div *ngFor='let cryptocurrency of cryptocurrencies'>
-      <ion-card (click)='showCrypto(cryptocurrency)'>
-        <ion-row>
-          <ion-col col-sm-6>
-            <ion-list>
-              <div ion-item class='header'>{{cryptocurrency.name}}</div>
-              <div ion-item>{{cryptocurrency.symbol}}</div>
-            </ion-list>
-          </ion-col>
-          <ion-col col-sm-6>
-            <ion-list>
-              <div ion-item *ngIf='currency === "CAD"'>{{cryptocurrency.price_cad | currency}}</div>
-              <div ion-item *ngIf='currency === "BTC"'>{{cryptocurrency.price_btc | number:'1.8-8'}}</div>
-              <div ion-item [ngStyle]='{"color": cryptocurrency.percent_change_24h.indexOf("-") > -1 ? "#d14836" : "#093" }'>{{cryptocurrency.percent_change_24h | number}}%</div>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-      </ion-card>
-    </div>
+  <div class='table-container' *ngIf='cryptocurrencies'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th col-3>Symbol</th>
+          <th col-3>Name</th>
+          <th col-3>Price</th>
+          <th col-3>Change (24h)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let cryptocurrency of cryptocurrencies'>
+          <td>
+            <ion-badge color='secondary'>{{cryptocurrency.symbol}}</ion-badge>
+          </td>
+          <td>{{cryptocurrency.name}}</td>
+          <td>{{getPrice(cryptocurrency) | currency}}</td>
+          <td [class.negative]='!posChange(cryptocurrency)' [class.positive]='posChange(cryptocurrency)'>
+            {{getPercentChange(cryptocurrency) | number}}%
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </ion-content>

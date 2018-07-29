@@ -1,21 +1,64 @@
 page-crypto-list {
-  .card {
-    border-radius: 10px;
-    font-family: "Gotham Rounded Medium";
-    background: color($colors, primary);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    .card-header,
-    .item {
-      background: color($colors, primary);
-      color: white;
+  // font-family: 'Gotham Rounded Medium';
+  // background: color($colors, primary);
+  // font-size: 10px;
+
+  // .header {
+  //   color: color($colors, secondary);
+  // }
+
+  // .badge {
+  //   color: color($colors, primary);
+  //   font-size: 8px;
+  // }
+
+  // .price {
+  //   color: white
+  // }
+
+  // .percent-change {
+  //   .positive {
+  //     color: #093;
+  //   }
+
+  //   .negative {
+  //     color: #d14836;
+  //   }
+  // }
+
+  .table-container {
+    font-family: 'Gotham Rounded Medium';
+    padding: 10px 20px 10px 20px;
+
+    table {
+      margin-bottom: 0;
+      text-align: left;
     }
-    .header {
-      color: color($colors, secondary);
+
+    thead th {
+      font-size: 8px;
+      border-top: 0;
+      border-bottom: 1px solid #aeaeae;
+    }
+
+    tr {
+      border-bottom: 0.5px solid #aeaeae;
+      font-size: 12px;
+
+      td {
+        padding: 5px;
+      }
+
+      .positive {
+        color: #093;
+      }
+
+      .negative {
+        color: #d14836;
+      }
     }
   }
-
   .scroll-content {
-    background: #c6e1f4;
     margin-top: 56px;
   }
 }

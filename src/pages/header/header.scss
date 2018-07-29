@@ -1,3 +1,39 @@
 page-header {
+  font-family: 'Gotham Rounded Medium';
 
+  .header-md::after {
+    background-image: none;
+  }
+
+  .header {
+    padding: 10px;
+  }
+
+  .select {
+    padding: 8px 8px 0px 0px;
+    display: inline-block;
+    max-width: none;
+  
+    .select-text {
+      display: inline-block;
+    }
+
+    .select-icon {
+      display: inline-block;
+      height: 17px;
+    }
+  }
+
+  .title {
+    display: inline-block;
+    font-size: 20px;
+  }
+
+  .icon {
+    font-size: 20px;
+  }
+
+  .toolbar-background {
+    background-color: white;
+  }
 }

@@ -1,7 +1,16 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{name}}
-      <ion-icon md='md-refresh' float-right (click)='clickRefresh()'></ion-icon>
-    </ion-title>
-  </ion-navbar>
+  <ion-row>
+    <ion-col col-3>
+      <ion-select [(ngModel)]="currency" interface="popover">
+        <ion-option value="CAD" (ionSelect)="changeCurrency($event)">CAD</ion-option>
+        <ion-option value="BTC" (ionSelect)="changeCurrency($event)">BTC</ion-option>
+      </ion-select>
+    </ion-col>
+    <ion-col col-6>
+      <div class='title'>{{name}}</div>
+    </ion-col>
+    <ion-col col-3>
+      <ion-icon md='md-refresh' float-right (click)='refreshPage()'></ion-icon>
+    </ion-col>
+  </ion-row>
 </ion-header>

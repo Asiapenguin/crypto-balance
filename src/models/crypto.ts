@@ -1,4 +1,4 @@
-import { Resource } from "../models/resource";
+import { Resource } from '../models/resource';
 
 export class Crypto extends Resource {
   static resourcePath = '/ticker';
@@ -6,12 +6,11 @@ export class Crypto extends Resource {
   id: string;
   name: string;
   symbol: string;
-  rank: string;
-  price_cad: string;
-  price_btc: string;
-  market_cap_cad: string;
-  total_supply: string;
-  percent_change_1h: string;
-  percent_change_24h: string;
+  website_slug: string;
+  rank: number;
+  circulating_supply: number;
+  total_supply: number;
+  max_supply:number;
+  quotes: any;
   last_updated: Date;
 }

@@ -1,6 +1,19 @@
-import { Injector, Injectable } from "@angular/core";
-import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
-import { Resource } from "../../models/resource";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injector } from '@angular/core';
+
+import { DateTime } from '../../../node_modules/ionic-angular/umd';
+import { Resource } from '../../models/resource';
+
+export interface ResponseMeta {
+  timestamp: DateTime;
+  num_cryptocurrencies: number;
+  error?: string;
+}
+
+export interface ListResponse<T> {
+  data?: Array<T>;
+  metadata?: ResponseMeta;
+}
 
 export class ResourceService {
   url: string;
@@ -8,16 +21,13 @@ export class ResourceService {
 
   constructor(private injector: Injector, private modelClass: any) {
     this.http = injector.get(HttpClient);
-    this.url = "https://api.coinmarketcap.com/v1" + modelClass.resourcePath;
+    this.url = 'https://api.coinmarketcap.com/v2' + modelClass.resourcePath;
   }
 
-  list<T extends Resource>(
-    params?: HttpParams,
-    headers?: HttpHeaders
-  ): Promise<Array<T>> {
+  list<T extends Resource>(params?: HttpParams): Promise<ListResponse<T>> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.url + "/", { params }).subscribe(
-        (result: Array<T>) => {
+      this.http.get(this.url + '/', { params }).subscribe(
+        (result: ListResponse<T>) => {
           resolve(this.generateCryptoArray(result));
         },
         err => {
@@ -31,13 +41,9 @@ export class ResourceService {
     return new GetQuery(this.list.bind(this));
   }
 
-  get<T extends Resource>(
-    id: string,
-    params?: HttpParams,
-    headers?: HttpHeaders
-  ): Promise<T> {
+  get<T extends Resource>(id: string, params?: HttpParams): Promise<T> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.url + "/" + id + "/", { params }).subscribe(
+      this.http.get(this.url + '/' + id + '/', { params }).subscribe(
         (data: T) => {
           const item = new this.modelClass();
           Object.assign(item, data);
@@ -54,14 +60,17 @@ export class ResourceService {
     return new GetQuery<T>(this.get.bind(this)).id(id);
   }
 
-  private generateCryptoArray<T extends Resource>(result): Array<T> {
-    const items: Array<T> = [];
-    for (const row of result) {
-      const item = new this.modelClass();
-      Object.assign(item, row);
-      items.push(item);
+  private generateCryptoArray<T extends Resource>(result): ListResponse<T> {
+    if (result.data) {
+      const items: Array<T> = [];
+      const keys = Object.keys(result.data);
+      for (let key of keys) {
+        const item = new this.modelClass();
+        Object.assign(item, result.data[key]);
+        items.push(item);
+      }
+      result.data = items;
     }
-    result = items;
     return result;
   }
 }
@@ -71,37 +80,38 @@ class GetQuery<T extends Resource> {
   resourceId: string;
   limitResult: number;
   supported = [
-    "AUD",
-    "BRL",
-    "CAD",
-    "CHF",
-    "CLP",
-    "CNY",
-    "CZK",
-    "DKK",
-    "EUR",
-    "GBP",
-    "HKD",
-    "HUF",
-    "IDR",
-    "ILS",
-    "INR",
-    "JPY",
-    "KRW",
-    "MXN",
-    "MYR",
-    "NOK",
-    "NZD",
-    "PHP",
-    "PKR",
-    "PLN",
-    "RUB",
-    "SEK",
-    "SGD",
-    "THB",
-    "TRY",
-    "TWD",
-    "ZAR"
+    'BTC',
+    'AUD',
+    'BRL',
+    'CAD',
+    'CHF',
+    'CLP',
+    'CNY',
+    'CZK',
+    'DKK',
+    'EUR',
+    'GBP',
+    'HKD',
+    'HUF',
+    'IDR',
+    'ILS',
+    'INR',
+    'JPY',
+    'KRW',
+    'MXN',
+    'MYR',
+    'NOK',
+    'NZD',
+    'PHP',
+    'PKR',
+    'PLN',
+    'RUB',
+    'SEK',
+    'SGD',
+    'THB',
+    'TRY',
+    'TWD',
+    'ZAR'
   ];
   currency: string;
   headers: { [key: string]: string | string[] } = {};
@@ -127,39 +137,21 @@ class GetQuery<T extends Resource> {
     return this;
   }
 
-  header(key: string, value: string | string[]): GetQuery<T> {
-    this.headers[key] = value;
-    return this;
-  }
-
   getHttpParams(): HttpParams {
     let params = new HttpParams();
 
     if (this.limitResult) {
-      params = params.set("limit", this.limitResult.toString());
+      params = params.set('limit', this.limitResult.toString());
     }
 
     if (this.currency) {
-      params = params.set("convert", this.currency);
+      params = params.set('convert', this.currency);
     }
 
     return params;
   }
 
-  getHttpHeaders(): HttpHeaders {
-    const headers = this.headers;
-    const keys = Object.keys(headers);
-    if (keys.length) {
-      let httpHeaders = new HttpHeaders();
-      for (const key of keys) {
-        httpHeaders = httpHeaders.set(key, headers[key].toString());
-      }
-      return httpHeaders;
-    }
-    return null;
-  }
-
-  get(): Promise<T | Array<T>> {
+  get(): Promise<T | ListResponse<T>> {
     const params = this.getHttpParams();
     if (this.resourceId) {
       return this.getHandler(this.resourceId, params);

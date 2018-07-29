@@ -6,14 +6,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { CryptoListPage } from '../pages/crypto-list/crypto-list';
+import { CryptoModalPage } from '../pages/crypto-modal/crypto-modal';
 import { HeaderPage } from '../pages/header/header';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CryptoService } from '../providers/crypto/crypto.service';
-import { MyApp } from './app.component';
-import { CryptoModalPage } from '../pages/crypto-modal/crypto-modal';
-import { SettingsPage } from '../pages/settings/settings';
 import { CurrencyService } from '../providers/currency/currency.service';
-import { ProfilePage } from '../pages/profile/profile';
+import { MyApp } from './app.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +19,7 @@ import { ProfilePage } from '../pages/profile/profile';
     TabsPage,
     CryptoListPage,
     HeaderPage,
-    CryptoModalPage,
-    SettingsPage,
-    ProfilePage
+    CryptoModalPage
   ],
   imports: [
     BrowserModule,
@@ -35,9 +31,7 @@ import { ProfilePage } from '../pages/profile/profile';
     TabsPage,
     CryptoListPage,
     HeaderPage,
-    CryptoModalPage,
-    SettingsPage,
-    ProfilePage
+    CryptoModalPage
   ],
   providers: [
     StatusBar,

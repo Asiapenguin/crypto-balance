@@ -1,22 +1,17 @@
-import { Component } from "@angular/core";
-import { DecimalPipe } from "@angular/common";
-import {
-  NavController,
-  NavParams,
-  LoadingController,
-  ModalController
-} from "ionic-angular";
-import { CryptoService } from "../../providers/crypto/crypto.service";
-import { Crypto } from "../../models/crypto";
-import { CryptoModalPage } from "../crypto-modal/crypto-modal";
-import { SettingsPage } from "../settings/settings";
-import { CurrencyService } from "../../providers/currency/currency.service";
+import { Component, OnInit } from '@angular/core';
+import { LoadingController, ModalController, NavController, NavParams } from 'ionic-angular';
+
+import { Crypto } from '../../models/crypto';
+import { CryptoService } from '../../providers/crypto/crypto.service';
+import { CurrencyService } from '../../providers/currency/currency.service';
+import { ListResponse } from '../../providers/resource/resource.service';
+import { CryptoModalPage } from '../crypto-modal/crypto-modal';
 
 @Component({
-  selector: "page-crypto-list",
-  templateUrl: "crypto-list.html"
+  selector: 'page-crypto-list',
+  templateUrl: 'crypto-list.html'
 })
-export class CryptoListPage {
+export class CryptoListPage implements OnInit {
   cryptocurrencies: Array<Crypto> = [];
   currency: string;
   title: string;
@@ -30,32 +25,37 @@ export class CryptoListPage {
     private currencyService: CurrencyService
   ) {}
 
-  ionViewWillEnter() {
+  ngOnInit() {
     this.getCryptocurrencies();
-    this.title = 'TOP 10 in ' + this.currency;
+    this.title = 'Cryptocurrencies';
   }
 
   getCryptocurrencies() {
-    this.currency = this.currencyService.currency;
+    this.currency = this.currencyService.getCurrency();
     this.cryptoService
       .findAll()
       .convert(this.currency)
-      .limit(10)
       .get()
-      .then((result: Array<Crypto>) => {
-        this.cryptocurrencies = result;
-      });
+      .then(
+        (result: ListResponse<Crypto>) => {
+          this.cryptocurrencies = result.data;
+          console.log(this.cryptocurrencies);
+        },
+        err => {
+          console.log('error getting cryptocurrencies');
+        }
+      );
   }
 
   refresh() {
     let loading = this.loadingCtrl.create({
-      content: "Refreshing..."
+      content: 'Refreshing...'
     });
     loading.present();
+    this.getCryptocurrencies();
     setTimeout(() => {
-      this.getCryptocurrencies();
       loading.dismiss();
-    }, 500);
+    }, 1000);
   }
 
   showCrypto(crypto: Crypto) {
@@ -63,7 +63,24 @@ export class CryptoListPage {
     modal.present();
   }
 
-  openSettings() {
-    this.navCtrl.push(SettingsPage);
+  getPrice(crypto: Crypto) {
+    let cryptoObj = crypto.quotes[this.currency]
+    return cryptoObj ? cryptoObj["price"] : null;
+  }
+
+  getPercentChange(crypto: Crypto) {
+    let cryptoObj = crypto.quotes[this.currency]
+    return cryptoObj ? cryptoObj["percent_change_24h"] : null;
+  }
+
+  posChange(crypto: Crypto) {
+    let cryptoObj = crypto.quotes[this.currency];
+    let twentyFourHourChange;
+    if (cryptoObj)
+    {
+      twentyFourHourChange = crypto.quotes[this.currency]["percent_change_24h"].toString();
+      return twentyFourHourChange.indexOf('-') < 0;
+    }
+    return null;
   }
 }
