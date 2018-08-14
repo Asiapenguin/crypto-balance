@@ -35,7 +35,6 @@ export class CryptoListPage implements OnInit {
     this.cryptoService
       .findAll()
       .convert(this.currency)
-      .sort('rank')
       .get()
       .then(
         (result: ListResponse<Crypto>) => {
@@ -61,21 +60,21 @@ export class CryptoListPage implements OnInit {
   }
 
   getPrice(crypto: Crypto) {
-    let cryptoObj = crypto.quotes[this.currency]
+    let cryptoObj = crypto.quote[this.currency]
     return cryptoObj ? cryptoObj["price"] : null;
   }
 
   getPercentChange(crypto: Crypto) {
-    let cryptoObj = crypto.quotes[this.currency]
+    let cryptoObj = crypto.quote[this.currency]
     return cryptoObj ? cryptoObj["percent_change_24h"] : null;
   }
 
   posChange(crypto: Crypto) {
-    let cryptoObj = crypto.quotes[this.currency];
+    let cryptoObj = crypto.quote[this.currency];
     let twentyFourHourChange;
     if (cryptoObj)
     {
-      twentyFourHourChange = crypto.quotes[this.currency]["percent_change_24h"].toString();
+      twentyFourHourChange = crypto.quote[this.currency]["percent_change_24h"].toString();
       return twentyFourHourChange.indexOf('-') < 0;
     }
     return null;

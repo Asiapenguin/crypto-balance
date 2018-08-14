@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -12,6 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { CryptoService } from '../providers/crypto/crypto.service';
 import { CurrencyService } from '../providers/currency/currency.service';
 import { MyApp } from './app.component';
+import { ApiKeyInterceptor } from '../interceptors/api-key.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,12 @@ import { MyApp } from './app.component';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CryptoService,
-    CurrencyService
+    CurrencyService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiKeyInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [IonicApp]
 })
