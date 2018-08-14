@@ -2,11 +2,9 @@ import {
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
-  HttpEvent,
-  HttpErrorResponse
+  HttpEvent
 } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { tap } from 'rxjs/operators';
 
 export class ApiKeyInterceptor implements HttpInterceptor {
   intercept(
