@@ -35,6 +35,7 @@ export class CryptoListPage implements OnInit {
     this.cryptoService
       .findAll()
       .convert(this.currency)
+      .sort('rank')
       .get()
       .then(
         (result: ListResponse<Crypto>) => {

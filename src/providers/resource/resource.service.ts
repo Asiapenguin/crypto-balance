@@ -79,6 +79,7 @@ class GetQuery<T extends Resource> {
   getHandler: Function;
   resourceId: string;
   limitResult: number;
+  sortParam: string;
   supported = [
     'BTC',
     'AUD',
@@ -137,6 +138,11 @@ class GetQuery<T extends Resource> {
     return this;
   }
 
+  sort(param: string): GetQuery<T> {
+    this.sortParam = param;
+    return this;
+  }
+
   getHttpParams(): HttpParams {
     let params = new HttpParams();
 
@@ -146,6 +152,10 @@ class GetQuery<T extends Resource> {
 
     if (this.currency) {
       params = params.set('convert', this.currency);
+    }
+
+    if (this.sortParam) {
+      params = params.set('sort', this.sortParam);
     }
 
     return params;
