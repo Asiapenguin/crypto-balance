@@ -3,17 +3,14 @@
 
 // Font path is used to include ionicons,
 // roboto, and noto sans fonts
-$font-path: "../assets/fonts";
-
+$font-path: '../assets/fonts';
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
 
-
-@import "ionic.globals";
-
+@import 'ionic.globals';
 
 // Shared Variables
 // --------------------------------------------------
@@ -22,7 +19,42 @@ $app-direction: ltr;
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
+.table-container {
+  font-family: 'Gotham Rounded Medium';
+  padding: 10px 20px 10px 20px;
 
+  table {
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  thead th {
+    font-size: 10px;
+    border-top: 0;
+    border-bottom: 1px solid #aeaeae;
+  }
+
+  tr {
+    border-bottom: 0.5px solid #aeaeae;
+    font-size: 12px;
+
+    td {
+      padding: 5px;
+    }
+  }
+
+  .badge {
+    font-size: 1.1rem;
+  }
+}
+
+.positive {
+  color: #093;
+}
+
+.negative {
+  color: #d14836;
+}
 
 // Named Color Variables
 // --------------------------------------------------
@@ -33,33 +65,25 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #021c1e, //#40e0d0
-  secondary:  #021c1e, 
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary: #021c1e,
+  //#40e0d0
+    secondary: #021c1e,
+  danger: #f53d3d,
+  light: #f4f4f4,
+  dark: #222
 );
-
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
-
-
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
-
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
-
-
 
 // App Theme
 // --------------------------------------------------
@@ -68,29 +92,27 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.default";
-
+@import 'ionic.theme.default';
 
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/ionicons/
 
-@import "ionic.ionicons";
-
+@import 'ionic.ionicons';
 
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
-@import "noto-sans";
+@import 'roboto';
+@import 'noto-sans';
 
 @font-face {
   font-family: Gotham Rounded Light;
-  src: url('../../assets/fonts/GothamRounded-Light.otf')
+  src: url('../../assets/fonts/GothamRounded-Light.otf');
 }
 
 @font-face {
   font-family: Gotham Rounded Medium;
-  src: url('../../assets/fonts/GothamRounded-Medium.otf')
+  src: url('../../assets/fonts/GothamRounded-Medium.otf');
 }

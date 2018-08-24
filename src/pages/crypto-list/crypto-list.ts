@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController, ModalController, NavController, NavParams } from 'ionic-angular';
 
 import { Crypto } from '../../models/crypto';
-import { CryptoService } from '../../providers/crypto/crypto.service';
+import { CryptoService, Period } from '../../providers/crypto/crypto.service';
 import { CurrencyService } from '../../providers/currency/currency.service';
 import { ListResponse } from '../../providers/resource/resource.service';
 import { CryptoModalPage } from '../crypto-modal/crypto-modal';
@@ -60,23 +60,14 @@ export class CryptoListPage implements OnInit {
   }
 
   getPrice(crypto: Crypto) {
-    let cryptoObj = crypto.quote[this.currency]
-    return cryptoObj ? cryptoObj["price"] : null;
+    return this.cryptoService.getPrice(crypto, this.currency);
   }
 
   getPercentChange(crypto: Crypto) {
-    let cryptoObj = crypto.quote[this.currency]
-    return cryptoObj ? cryptoObj["percent_change_24h"] : null;
+    return this.cryptoService.getPercentChange(crypto, this.currency, Period.daily);
   }
 
   posChange(crypto: Crypto) {
-    let cryptoObj = crypto.quote[this.currency];
-    let twentyFourHourChange;
-    if (cryptoObj)
-    {
-      twentyFourHourChange = crypto.quote[this.currency]["percent_change_24h"].toString();
-      return twentyFourHourChange.indexOf('-') < 0;
-    }
-    return null;
+    return this.cryptoService.posChange(crypto, this.currency, Period.daily);
   }
 }

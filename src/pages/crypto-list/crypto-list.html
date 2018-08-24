@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor='let cryptocurrency of cryptocurrencies'>
+        <tr *ngFor='let cryptocurrency of cryptocurrencies' (click)='showCrypto(cryptocurrency)'>
           <td>
             <ion-badge color='secondary'>{{cryptocurrency.symbol}}</ion-badge>
           </td>

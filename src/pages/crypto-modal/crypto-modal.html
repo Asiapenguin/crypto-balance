@@ -1,10 +1,58 @@
-<ion-header *ngIf='crypto'>
+<ion-header *ngIf='cryptocurrency'>
   <ion-navbar>
-    <ion-title float-left>
+    <ion-title>
       <ion-icon name='ios-arrow-back' (click)='closeModal()' float-left padding-right></ion-icon>
-      {{crypto.name}} {{crypto.symbol}}</ion-title>
+      <div text-center>
+        <ion-badge color='secondary'>{{cryptocurrency.symbol}}</ion-badge>
+        {{cryptocurrency.name}}
+      </div>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  {{crypto.price_cad}}
+  <h3 *ngIf='currency === "CAD"' text-center>{{getPrice(cryptocurrency) | currency}}</h3>
+  <h3 *ngIf='currency === "BTC"' text-center>{{getPrice(cryptocurrency) | number:'1.8-8'}}</h3>
+  <ion-row text-center>
+    <ion-col col-4>
+      <p class='subtitle'>Hourly</p>
+      <span [class.negative]='!posChange(cryptocurrency, period.hourly)' [class.positive]='posChange(cryptocurrency, period.hourly)'>{{getPercentChange(cryptocurrency,
+        period.hourly) | number}}%</span>
+    </ion-col>
+    <ion-col col-4>
+      <p class='subtitle'>Daily</p>
+      <span [class.negative]='!posChange(cryptocurrency, period.daily)' [class.positive]='posChange(cryptocurrency, period.daily)'>{{getPercentChange(cryptocurrency,
+        period.daily) | number}}%</span>
+    </ion-col>
+    <ion-col col-4>
+      <p class='subtitle'>Weekly</p>
+      <span [class.negative]='!posChange(cryptocurrency, period.weekly)' [class.positive]='posChange(cryptocurrency, period.weekly)'>{{getPercentChange(cryptocurrency,
+        period.weekly) | number}}%</span>
+    </ion-col>
+  </ion-row>
+  <div class='table-container' *ngIf='cryptocurrency'>
+    <table class='table'>
+      <!-- <thead>
+        <th>Other Statistics</th>
+      </thead> -->
+      <tbody>
+        <tr>
+          <td col-6>Market Cap</td>
+          <td col-6 *ngIf='currency === "CAD"'>{{getMarketCap(cryptocurrency) | currency}}</td>
+          <td col-6 *ngIf='currency === "BTC"'>{{getMarketCap(cryptocurrency) | number:'1.8-8'}}</td>
+        </tr>
+        <tr>
+          <td col-6>Circulating Supply</td>
+          <td col-6>{{cryptocurrency.circulating_supply}} {{cryptocurrency.symbol}}</td>
+        </tr>
+        <tr>
+          <td col-6>Max Supply</td>
+          <td col-6>{{cryptocurrency.max_supply}} {{cryptocurrency.symbol}}</td>
+        </tr>
+        <tr>
+          <td col-6>Volume (24hr)</td>
+          <td col-6>{{getVolume(cryptocurrency)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </ion-content>
