@@ -23,7 +23,6 @@ export class CryptoModalPage {
   ) {
     this.cryptocurrency = navParams.data;
     this.currency = this.currencyService.getCurrency();
-    console.log('crypto modal', this.cryptocurrency);
   }
 
   closeModal() {
@@ -39,7 +38,7 @@ export class CryptoModalPage {
   }
 
   posChange(crypto: Crypto, period: Period) {
-    return this.cryptoService.getPercentChange(crypto, this.currency, period);
+    return this.cryptoService.posChange(crypto, this.currency, period);
   }
 
   getMarketCap(crypto: Crypto) {

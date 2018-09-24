@@ -37,7 +37,6 @@ export class CryptoService extends ResourceService {
   posChange(cryptocurrency: Crypto, currency: string, period: Period) {
       let change = this.getPercentChange(cryptocurrency, currency, period).toString();
       if (change) {
-        console.log('positive?', change.indexOf('-') < 0)
         return change.indexOf('-') < 0;
       }
       return null;
