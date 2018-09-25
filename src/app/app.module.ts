@@ -13,6 +13,7 @@ import { CryptoService } from '../providers/crypto/crypto.service';
 import { CurrencyService } from '../providers/currency/currency.service';
 import { MyApp } from './app.component';
 import { ApiKeyInterceptor } from '../interceptors/api-key.interceptor';
+import { CryptoProfilePage } from '../pages/crypto-profile/crypto-profile';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ApiKeyInterceptor } from '../interceptors/api-key.interceptor';
     TabsPage,
     CryptoListPage,
     HeaderPage,
-    CryptoModalPage
+    CryptoModalPage,
+    CryptoProfilePage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { ApiKeyInterceptor } from '../interceptors/api-key.interceptor';
     TabsPage,
     CryptoListPage,
     HeaderPage,
-    CryptoModalPage
+    CryptoModalPage,
+    CryptoProfilePage
   ],
   providers: [
     StatusBar,

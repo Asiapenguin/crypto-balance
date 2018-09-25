@@ -29,30 +29,32 @@
         period.weekly) | number}}%</span>
     </ion-col>
   </ion-row>
-  <div class='table-container' *ngIf='cryptocurrency'>
-    <table class='table'>
-      <!-- <thead>
+  <ion-row justify-content-center>
+    <div class='table-container' *ngIf='cryptocurrency'>
+      <table class='table'>
+        <!-- <thead>
         <th>Other Statistics</th>
       </thead> -->
-      <tbody>
-        <tr>
-          <td col-6>Market Cap</td>
-          <td col-6 *ngIf='currency === "CAD"'>{{getMarketCap(cryptocurrency) | currency}}</td>
-          <td col-6 *ngIf='currency === "BTC"'>{{getMarketCap(cryptocurrency) | number:'1.8-8'}}</td>
-        </tr>
-        <tr>
-          <td col-6>Circulating Supply</td>
-          <td col-6>{{cryptocurrency.circulating_supply}} {{cryptocurrency.symbol}}</td>
-        </tr>
-        <tr>
-          <td col-6>Max Supply</td>
-          <td col-6>{{cryptocurrency.max_supply}} {{cryptocurrency.symbol}}</td>
-        </tr>
-        <tr>
-          <td col-6>Volume (24hr)</td>
-          <td col-6>{{getVolume(cryptocurrency)}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+        <tbody>
+          <tr>
+            <td col-6>Market Cap</td>
+            <td col-6 *ngIf='currency === "CAD"'>{{getMarketCap(cryptocurrency) | currency}}</td>
+            <td col-6 *ngIf='currency === "BTC"'>{{getMarketCap(cryptocurrency) | number:'1.8-8'}}</td>
+          </tr>
+          <tr>
+            <td col-6>Circulating Supply</td>
+            <td col-6>{{cryptocurrency.circulating_supply}} {{cryptocurrency.symbol}}</td>
+          </tr>
+          <tr>
+            <td col-6>Max Supply</td>
+            <td col-6>{{cryptocurrency.max_supply}} {{cryptocurrency.symbol}}</td>
+          </tr>
+          <tr>
+            <td col-6>Volume (24hr)</td>
+            <td col-6>{{getVolume(cryptocurrency)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ion-row>
 </ion-content>

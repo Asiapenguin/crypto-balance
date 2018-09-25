@@ -10,6 +10,7 @@ import { CurrencyService } from '../../providers/currency/currency.service';
 export class HeaderPage implements OnInit {
   @Input() name: string;
   @Output() refresh = new EventEmitter();
+  @Output() newUserCrypto = new EventEmitter();
 
   currency: string;
 
@@ -24,8 +25,12 @@ export class HeaderPage implements OnInit {
     this.currency = this.currencyService.getCurrency();
   }
 
-  refreshPage() {
+  emitRefreshPage() {
     this.refresh.emit();
+  }
+
+  emitNewUserCrypto() {
+    this.newUserCrypto.emit();
   }
 
   changeCurrency(currency: string) {
