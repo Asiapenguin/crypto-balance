@@ -15,7 +15,6 @@ export class CryptoModalPage {
   period = Period;
 
   constructor(
-    public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public currencyService: CurrencyService,

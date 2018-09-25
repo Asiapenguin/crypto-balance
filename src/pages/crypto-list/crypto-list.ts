@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, ModalController, NavController, NavParams } from 'ionic-angular';
+import { LoadingController, ModalController } from 'ionic-angular';
 
 import { Crypto } from '../../models/crypto';
 import { CryptoService, Period } from '../../providers/crypto/crypto.service';
@@ -17,8 +17,6 @@ export class CryptoListPage implements OnInit {
   title: string;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
     private cryptoService: CryptoService,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController,

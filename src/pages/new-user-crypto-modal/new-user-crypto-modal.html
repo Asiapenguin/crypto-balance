@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <ion-icon name='ios-arrow-back' (click)='closeModal()' float-left padding-right></ion-icon>
+      <div text-center>
+        Add New Profile Item
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-item>
+    <ion-label>Cryptocurrency</ion-label>
+    <ion-select [(ngModel)]='chosenCryptocurrency' interface='popover'>
+      <ion-option *ngFor='let cryptocurrency of cryptocurrencies' [value]='cryptocurrency'>{{cryptocurrency.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Currency</ion-label>
+    <ion-select [(ngModel)]='chosenCurrency' interface='popover'>
+      <ion-option value="CAD">CAD</ion-option>
+      <ion-option value="BTC">BTC</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Price</ion-label>
+    <ion-input [(ngModel)]='chosenPrice' type='number'></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Quantity</ion-label>
+    <ion-input [(ngModel)]='chosenQuantity' type='number'></ion-input>
+  </ion-item>
+  <div text-center padding-top>
+    <button ion-button color="secondary" round icon-start (click)='addNewUserCrypto()' [disabled]='!allFieldsFilled()'>
+      <ion-icon md='md-add'></ion-icon>Add
+    </button>
+  </div>
+</ion-content>

@@ -1,13 +1,17 @@
 <ion-header>
   <ion-row>
     <ion-col col-3>
-      <ion-select [(ngModel)]="currency" interface="popover">
-        <ion-option value="CAD" (ionSelect)="changeCurrency($event)">CAD</ion-option>
-        <ion-option value="BTC" (ionSelect)="changeCurrency($event)">BTC</ion-option>
-      </ion-select>
-      <ion-icon md='md-add' (click)='emitNewUserCrypto()'></ion-icon>
+      <div *ngIf='name === "Cryptocurrencies"'>
+        <ion-select [(ngModel)]="currency" interface="popover">
+          <ion-option value="CAD" (ionSelect)="changeCurrency($event)">CAD</ion-option>
+          <ion-option value="BTC" (ionSelect)="changeCurrency($event)">BTC</ion-option>
+        </ion-select>
+      </div>
+      <div *ngIf='name === "Profile"'>
+        <ion-icon md='md-add' (click)='emitNewUserCrypto()'></ion-icon>
+      </div>
     </ion-col>
-    <ion-col col-6>
+    <ion-col col-6 text-center>
       <div class='title'>{{name}}</div>
     </ion-col>
     <ion-col col-3>

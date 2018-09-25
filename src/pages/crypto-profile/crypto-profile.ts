@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
+import { NewUserCryptoModalPage } from '../new-user-crypto-modal/new-user-crypto-modal';
+import { UserCrypto } from '../../models/userCrypto';
 
 @Component({
   selector: 'page-crypto-profile',
@@ -7,11 +9,16 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class CryptoProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  userCryptocurrencies: Array<UserCrypto> = [];
+
+  constructor(public modalCtrl: ModalController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CryptoProfilePage');
+  openNewUserCryptoModal() {
+    let modal = this.modalCtrl.create(NewUserCryptoModalPage);
+    modal.onDidDismiss((data: UserCrypto) => {
+      this.userCryptocurrencies.push(data);
+    })
+    modal.present();
   }
-
 }

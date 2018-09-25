@@ -14,6 +14,7 @@ import { CurrencyService } from '../providers/currency/currency.service';
 import { MyApp } from './app.component';
 import { ApiKeyInterceptor } from '../interceptors/api-key.interceptor';
 import { CryptoProfilePage } from '../pages/crypto-profile/crypto-profile';
+import { NewUserCryptoModalPage } from '../pages/new-user-crypto-modal/new-user-crypto-modal';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CryptoProfilePage } from '../pages/crypto-profile/crypto-profile';
     CryptoListPage,
     HeaderPage,
     CryptoModalPage,
-    CryptoProfilePage
+    CryptoProfilePage,
+    NewUserCryptoModalPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { CryptoProfilePage } from '../pages/crypto-profile/crypto-profile';
     CryptoListPage,
     HeaderPage,
     CryptoModalPage,
-    CryptoProfilePage
+    CryptoProfilePage,
+    NewUserCryptoModalPage
   ],
   providers: [
     StatusBar,

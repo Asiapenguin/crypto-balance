@@ -4,7 +4,7 @@ import { DateTime } from 'ionic-angular';
 export class Crypto extends Resource {
   static resourcePath = '/cryptocurrency';
 
-  id: string;
+  id: number;
   name: string;
   symbol: string;
   slug: string;

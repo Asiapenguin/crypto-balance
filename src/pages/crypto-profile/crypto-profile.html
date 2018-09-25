@@ -1,6 +1,38 @@
-<page-header [name]='"Profile"' (refresh)='refresh()'></page-header>
-
-
-<ion-content padding>
-
+<page-header [name]='"Profile"' (newUserCrypto)='openNewUserCryptoModal()'></page-header>
+<ion-content>
+  <div class='table-container' *ngIf='userCryptocurrencies.length > 0'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th col-3>Name</th>
+          <th col-3>Buy Price</th>
+          <th col-3>Current Price</th>
+          <th col-3>Change</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let userCryptocurrency of userCryptocurrencies'>
+          <td>{{userCryptocurrency.cryptocurrency.name}}</td>
+          <td>{{userCryptocurrency.buyPrice}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class='table-container' *ngIf='userCryptocurrencies.length === 0'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th col-3>Name</th>
+          <th col-3>Buy Price</th>
+          <th col-3>Current Price</th>
+          <th col-3>Change</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan='4' text-center>No Profile Items</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </ion-content>
